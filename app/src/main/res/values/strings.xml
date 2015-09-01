@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Created by Magnus Ringkjøb
+    String constants
+-->
+
+<resources>
+    <string name="app_name">Popular Movies</string>
+
+    <!-- Titles -->
+    <!-- Title naming the activity Movie Details -->
+    <string name="title_activity_movie_details">Movie Details</string>
+
+    <!-- UI text -->
+    <!-- Headline for release date -->
+    <string name="heading_release_date">Release Date</string>
+    <!-- Headline for user vote average -->
+    <string name="heading_vote_average">Vote Average</string>
+
+    <!-- Some strings used for example layout during design -->
+    <string name="example_original_title">The Green Poster Man</string>
+    <string name="example_release_date">08–31–2015</string>
+    <string name="example_vote_average">8.2/10</string>
+    <string name="example_overview">A green, disconcerted, man takes on the mafia in underground North Korea to save his ferret. He\'ll find a lot of challenges, horror and romance on his journey. Who knows? Maybe Kim Jung-un makes a cameo appearance?</string>
+
+    <!-- Lifetime and Bundle -->
+    <string name="bundle_first_visible_position">FIRST_VISIBLE_POSITION</string>
+    <string name="parcel_movie">PARCEL_MOVIE</string>
+
+    <!-- Preference items -->
+    <string name="pref_sort_method_key">SORT_METHOD</string>
+    <string name="pref_sort_vote_avg_desc_key">SORT_VOTE_AVERAGE_DESC</string>
+    <string name="pref_sort_pop_desc_key">SORT_POPULARITY_DESC</string>
+
+    <!-- Themoviedb sort strings for url -->
+    <!-- tmdb sort 'popularity.desc' -->
+    <string name="tmdb_sort_pop_desc">popularity.desc</string>
+    <!-- tmdb sort 'vote_average.desc' -->
+    <string name="tmdb_sort_vote_avg_desc">vote_average.desc</string>
+    <string name="description_movie_poster">Contains poster of movie</string>
+</resources>
