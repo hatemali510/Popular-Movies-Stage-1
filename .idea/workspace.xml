@@ -14,7 +14,6 @@
   <component name="ChangeListManager">
     <list default="true" id="318b4e67-d25e-4403-b7f1-31668ef51703" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/ringkjob/popularmovies/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/ringkjob/popularmovies/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="app/src/main/res/values/strings_secrets.xml" />
@@ -37,7 +36,38 @@
     <favorites_list name="Popular-Movies" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ringkjob/popularmovies/MainActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.7839506">
+              <caret line="90" column="5" selection-start-line="90" selection-start-column="5" selection-end-line="90" selection-end-column="5" />
+              <folding>
+                <element signature="e#1462#1494#0" expanded="true" />
+                <element signature="e#2127#2158#0" expanded="true" />
+                <element signature="e#2487#2523#0" expanded="true" />
+                <element signature="e#3267#3299#0" expanded="true" />
+                <element signature="e#3488#3519#0" expanded="true" />
+                <element signature="e#3555#3593#0" expanded="true" />
+                <element signature="e#3724#3760#0" expanded="true" />
+                <element signature="e#3796#3839#0" expanded="true" />
+                <element signature="e#4174#4620#0" expanded="true" />
+                <element signature="e#4512#4559#0" expanded="true" />
+                <element signature="e#4619#4620#0" expanded="true" />
+                <element signature="e#5236#5274#0" expanded="true" />
+                <element signature="e#5306#5337#0" expanded="true" />
+                <element signature="e#5385#5421#0" expanded="true" />
+                <element signature="e#5485#5521#0" expanded="true" />
+                <element signature="e#5569#5600#0" expanded="true" />
+                <element signature="e#6008#6048#0" expanded="true" />
+                <element signature="e#6066#6104#0" expanded="true" />
+                <element signature="e#6454#6494#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
@@ -1819,12 +1849,18 @@
       <option name="project" value="LOCAL" />
       <updated>1441284139340</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Fix restoring state to not load from API">
+      <created>1441292247348</created>
+      <option name="number" value="00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1441292247348</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287841" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1833,7 +1869,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3287841" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3287841" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287841" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287841" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1862,7 +1898,8 @@
     <MESSAGE value="Working app" />
     <MESSAGE value="Skeleton file for API keys" />
     <MESSAGE value="Backup save. No real changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Backup save. No real changes" />
+    <MESSAGE value="Fix restoring state to not load from API" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix restoring state to not load from API" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1938,39 +1975,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ringkjob/popularmovies/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.36829838">
-          <caret line="38" column="8" selection-start-line="38" selection-start-column="8" selection-end-line="38" selection-end-column="8" />
-          <folding>
-            <element signature="e#1462#1494#0" expanded="true" />
-            <element signature="e#2329#2361#0" expanded="true" />
-            <element signature="e#2485#2931#0" expanded="true" />
-            <element signature="e#2823#2870#0" expanded="true" />
-            <element signature="e#2930#2931#0" expanded="true" />
-            <element signature="e#3205#3236#0" expanded="true" />
-            <element signature="e#3565#3601#0" expanded="true" />
-            <element signature="e#3997#4028#0" expanded="true" />
-            <element signature="e#4064#4102#0" expanded="true" />
-            <element signature="e#4233#4269#0" expanded="true" />
-            <element signature="e#4305#4348#0" expanded="true" />
-            <element signature="e#5164#5202#0" expanded="true" />
-            <element signature="e#5234#5265#0" expanded="true" />
-            <element signature="e#5313#5349#0" expanded="true" />
-            <element signature="e#5413#5449#0" expanded="true" />
-            <element signature="e#5497#5528#0" expanded="true" />
-            <element signature="e#5936#5976#0" expanded="true" />
-            <element signature="e#5994#6032#0" expanded="true" />
-            <element signature="e#6382#6422#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ringkjob/popularmovies/FetchMovieAsyncTask.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.70394737">
           <caret line="185" column="8" selection-start-line="185" selection-start-column="8" selection-end-line="185" selection-end-column="65" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ringkjob/popularmovies/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7839506">
+          <caret line="90" column="5" selection-start-line="90" selection-start-column="5" selection-end-line="90" selection-end-column="5" />
+          <folding>
+            <element signature="e#1462#1494#0" expanded="true" />
+            <element signature="e#2127#2158#0" expanded="true" />
+            <element signature="e#2487#2523#0" expanded="true" />
+            <element signature="e#3267#3299#0" expanded="true" />
+            <element signature="e#3488#3519#0" expanded="true" />
+            <element signature="e#3555#3593#0" expanded="true" />
+            <element signature="e#3724#3760#0" expanded="true" />
+            <element signature="e#3796#3839#0" expanded="true" />
+            <element signature="e#4174#4620#0" expanded="true" />
+            <element signature="e#4512#4559#0" expanded="true" />
+            <element signature="e#4619#4620#0" expanded="true" />
+            <element signature="e#5236#5274#0" expanded="true" />
+            <element signature="e#5306#5337#0" expanded="true" />
+            <element signature="e#5385#5421#0" expanded="true" />
+            <element signature="e#5485#5521#0" expanded="true" />
+            <element signature="e#5569#5600#0" expanded="true" />
+            <element signature="e#6008#6048#0" expanded="true" />
+            <element signature="e#6066#6104#0" expanded="true" />
+            <element signature="e#6454#6494#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

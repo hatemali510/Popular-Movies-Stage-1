@@ -63,35 +63,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        //Log.v(LOG_TAG, "onSaveInstanceState");
-
-        // Get Movie objects from gridview
-        int numMovieObjects = mGridView.getCount();
-        Movie[] movies = new Movie[numMovieObjects];
-        for (int i = 0; i < numMovieObjects; i++) {
-            movies[i] = (Movie) mGridView.getItemAtPosition(i);
-        }
-
-        // Save Movie objects to bundle
-        outState.putParcelableArray(getString(R.string.parcel_movie), movies);
-
-        super.onSaveInstanceState(outState);
-    }
-
-    GridView.OnItemClickListener moviePosterClickListener = new GridView.OnItemClickListener() {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            Movie movie = (Movie) parent.getItemAtPosition(position);
-
-            Intent intent = new Intent(getApplicationContext(), MovieDetailsActivity.class);
-            intent.putExtra(getResources().getString(R.string.parcel_movie), movie);
-
-            startActivity(intent);
-        }
-    };
-
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, mMenu);
 
@@ -120,6 +91,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        //Log.v(LOG_TAG, "onSaveInstanceState");
+
+        // Get Movie objects from gridview
+        int numMovieObjects = mGridView.getCount();
+        Movie[] movies = new Movie[numMovieObjects];
+        for (int i = 0; i < numMovieObjects; i++) {
+            movies[i] = (Movie) mGridView.getItemAtPosition(i);
+        }
+
+        // Save Movie objects to bundle
+        outState.putParcelableArray(getString(R.string.parcel_movie), movies);
+
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.string.pref_sort_pop_desc_key:
@@ -137,6 +125,21 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    /**
+     * Listener for clicks on movie posters in GridView
+     */
+    GridView.OnItemClickListener moviePosterClickListener = new GridView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            Movie movie = (Movie) parent.getItemAtPosition(position);
+
+            Intent intent = new Intent(getApplicationContext(), MovieDetailsActivity.class);
+            intent.putExtra(getResources().getString(R.string.parcel_movie), movie);
+
+            startActivity(intent);
+        }
+    };
 
     /**
      * This is where the magic happens when app launches. The app will start the process of
