@@ -14,7 +14,7 @@ import android.widget.GridView;
 
 /**
  * Created by Magnus Ringkjøb
- * <p/>
+ * <p>
  * Main activity of the application.
  */
 public class MainActivity extends AppCompatActivity {
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         mGridView = (GridView) findViewById(R.id.gridview);
         mGridView.setOnItemClickListener(moviePosterClickListener);
 
-        if(savedInstanceState == null) {
+        if (savedInstanceState == null) {
             // Get data from the Internet
             getMoviesFromTMDb(getSortMethod());
         } else {
@@ -51,14 +51,17 @@ public class MainActivity extends AppCompatActivity {
             // Get Movie objects
             Parcelable[] parcelable = savedInstanceState.
                     getParcelableArray(getString(R.string.parcel_movie));
-            int numMovieObjects = parcelable.length;
-            Movie[] movies = new Movie[numMovieObjects];
-            for (int i = 0; i < numMovieObjects; i++) {
-                movies[i] = (Movie) parcelable[i];
-            }
 
-            // Load movie objects into view
-            mGridView.setAdapter(new ImageAdapter(this, movies));
+            if(parcelable != null) {
+                int numMovieObjects = parcelable.length;
+                Movie[] movies = new Movie[numMovieObjects];
+                for (int i = 0; i < numMovieObjects; i++) {
+                    movies[i] = (Movie) parcelable[i];
+                }
+
+                // Load movie objects into view
+                mGridView.setAdapter(new ImageAdapter(this, movies));
+            }
         }
     }
 
@@ -94,15 +97,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         //Log.v(LOG_TAG, "onSaveInstanceState");
 
-        // Get Movie objects from gridview
         int numMovieObjects = mGridView.getCount();
-        Movie[] movies = new Movie[numMovieObjects];
-        for (int i = 0; i < numMovieObjects; i++) {
-            movies[i] = (Movie) mGridView.getItemAtPosition(i);
-        }
+        if (numMovieObjects > 0) {
+            // Get Movie objects from gridview
+            Movie[] movies = new Movie[numMovieObjects];
+            for (int i = 0; i < numMovieObjects; i++) {
+                movies[i] = (Movie) mGridView.getItemAtPosition(i);
+            }
 
-        // Save Movie objects to bundle
-        outState.putParcelableArray(getString(R.string.parcel_movie), movies);
+            // Save Movie objects to bundle
+            outState.putParcelableArray(getString(R.string.parcel_movie), movies);
+        }
 
         super.onSaveInstanceState(outState);
     }
