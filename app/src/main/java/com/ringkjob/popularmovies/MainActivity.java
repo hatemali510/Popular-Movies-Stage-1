@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Listener for clicks on movie posters in GridView
      */
-    GridView.OnItemClickListener moviePosterClickListener = new GridView.OnItemClickListener() {
+    private GridView.OnItemClickListener moviePosterClickListener = new GridView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             Movie movie = (Movie) parent.getItemAtPosition(position);
@@ -141,6 +141,7 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+
     /**
      * This is where the magic happens when app launches. The app will start the process of
      * collecting data from the API and present it to the user.
@@ -148,7 +149,19 @@ public class MainActivity extends AppCompatActivity {
      * @param sortMethod tmdb API method for sorting movies
      */
     private void getMoviesFromTMDb(String sortMethod) {
-        FetchMovieAsyncTask movieTask = new FetchMovieAsyncTask(this, mGridView);
+        // Key needed to get data from TMDb
+        String apiKey = getString(R.string.key_themoviedb);
+
+        // Listener for when AsyncTask is ready to update UI
+        OnTaskCompleted taskCompleted = new OnTaskCompleted() {
+            @Override
+            public void onFetchMoviesTaskCompleted(Movie[] movies) {
+                mGridView.setAdapter(new ImageAdapter(getApplicationContext(), movies));
+            }
+        };
+
+        // Execute task
+        FetchMovieAsyncTask movieTask = new FetchMovieAsyncTask(taskCompleted, apiKey);
         movieTask.execute(sortMethod);
     }
 

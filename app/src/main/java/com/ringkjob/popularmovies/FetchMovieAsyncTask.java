@@ -1,10 +1,8 @@
 package com.ringkjob.popularmovies;
 
-import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.GridView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,26 +28,26 @@ class FetchMovieAsyncTask extends AsyncTask<String, Void, Movie[]> {
     private final String LOG_TAG = FetchMovieAsyncTask.class.getSimpleName();
 
     /**
-     * Application context
+     * TMDb API key
      */
-    private final Context mContext;
+    private final String mApiKey;
 
     /**
-     * GridView to populate
+     * TODO
      */
-    private final GridView mGridView;
+    private OnTaskCompleted mListener;
 
     /**
      * Constructor
      *
-     * @param context  Application context
-     * @param gridView GridView to populate
+     * @param listener
+     * @param apiKey TMDb API key
      */
-    public FetchMovieAsyncTask(Context context, GridView gridView) {
+    public FetchMovieAsyncTask(OnTaskCompleted listener, String apiKey) {
         super();
 
-        mContext = context;
-        mGridView = gridView;
+        mListener = listener;
+        mApiKey = apiKey;
     }
 
     @Override
@@ -173,7 +171,7 @@ class FetchMovieAsyncTask extends AsyncTask<String, Void, Movie[]> {
 
         Uri builtUri = Uri.parse(TMDB_BASE_URL).buildUpon()
                 .appendQueryParameter(SORT_BY_PARAM, parameters[0])
-                .appendQueryParameter(API_KEY_PARAM, mContext.getString(R.string.key_themoviedb))
+                .appendQueryParameter(API_KEY_PARAM, mApiKey)
                 .build();
 
         return new URL(builtUri.toString());
@@ -183,6 +181,7 @@ class FetchMovieAsyncTask extends AsyncTask<String, Void, Movie[]> {
     protected void onPostExecute(Movie[] movies) {
         super.onPostExecute(movies);
 
-        mGridView.setAdapter(new ImageAdapter(mContext, movies));
+        // Notify UI
+        mListener.onFetchMoviesTaskCompleted(movies);
     }
 }

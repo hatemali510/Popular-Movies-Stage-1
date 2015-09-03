@@ -20,24 +20,6 @@ public class Movie implements Parcelable {
 
     /**
      * Constructor for a movie object
-     *
-     * @param originalTitle Original title of the movie
-     * @param posterPath    Path to the movie poster
-     * @param overView      Overview (description) of the movie
-     * @param voteAverage   Vote average of the movie
-     * @param releaseDate   Release date of the movie
-     */
-    public Movie(String originalTitle, String posterPath, String overView,
-                 Double voteAverage, String releaseDate) {
-        setOriginalTitle(originalTitle);
-        setPosterPath(posterPath);
-        setOverview(overView);
-        setVoteAverage(voteAverage);
-        setReleaseDate(releaseDate);
-    }
-
-    /**
-     * Constructor for a movie object
      */
     public Movie() {
     }
@@ -121,7 +103,7 @@ public class Movie implements Parcelable {
      *
      * @return TMDb vote average score
      */
-    public Double getVoteAverage() {
+    private Double getVoteAverage() {
         return mVoteAverage;
     }
 
