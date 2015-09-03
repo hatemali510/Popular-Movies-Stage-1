@@ -3,6 +3,7 @@ package com.ringkjob.popularmovies;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -34,37 +35,61 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Log.v(LOG_TAG, "onCreate");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         mGridView = (GridView) findViewById(R.id.gridview);
-    }
+        mGridView.setOnItemClickListener(moviePosterClickListener);
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        outState.putInt(getString(R.string.bundle_first_visible_position), mGridView.getFirstVisiblePosition());
+        if(savedInstanceState == null) {
+            // Get data from the Internet
+            getMoviesFromTMDb(getSortMethod());
+        } else {
+            // Get data from local resources
+            // Get Movie objects
+            Parcelable[] parcelable = savedInstanceState.
+                    getParcelableArray(getString(R.string.parcel_movie));
+            int numMovieObjects = parcelable.length;
+            Movie[] movies = new Movie[numMovieObjects];
+            for (int i = 0; i < numMovieObjects; i++) {
+                movies[i] = (Movie) parcelable[i];
+            }
 
-        super.onSaveInstanceState(outState);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        if (mGridView.getLastVisiblePosition() < 0) {
-            // No data. Start over again
-            getMovies(getSortMethod());
+            // Load movie objects into view
+            mGridView.setAdapter(new ImageAdapter(this, movies));
         }
     }
 
     @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
+    protected void onSaveInstanceState(Bundle outState) {
+        //Log.v(LOG_TAG, "onSaveInstanceState");
 
-        mGridView.setSelection(savedInstanceState.getInt(
-                getString(R.string.bundle_first_visible_position)));
+        // Get Movie objects from gridview
+        int numMovieObjects = mGridView.getCount();
+        Movie[] movies = new Movie[numMovieObjects];
+        for (int i = 0; i < numMovieObjects; i++) {
+            movies[i] = (Movie) mGridView.getItemAtPosition(i);
+        }
+
+        // Save Movie objects to bundle
+        outState.putParcelableArray(getString(R.string.parcel_movie), movies);
+
+        super.onSaveInstanceState(outState);
     }
 
+    GridView.OnItemClickListener moviePosterClickListener = new GridView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            Movie movie = (Movie) parent.getItemAtPosition(position);
+
+            Intent intent = new Intent(getApplicationContext(), MovieDetailsActivity.class);
+            intent.putExtra(getResources().getString(R.string.parcel_movie), movie);
+
+            startActivity(intent);
+        }
+    };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -100,12 +125,12 @@ public class MainActivity extends AppCompatActivity {
             case R.string.pref_sort_pop_desc_key:
                 updateSharedPrefs(getString(R.string.tmdb_sort_pop_desc));
                 updateMenu();
-                getMovies(getSortMethod());
+                getMoviesFromTMDb(getSortMethod());
                 return true;
             case R.string.pref_sort_vote_avg_desc_key:
                 updateSharedPrefs(getString(R.string.tmdb_sort_vote_avg_desc));
                 updateMenu();
-                getMovies(getSortMethod());
+                getMoviesFromTMDb(getSortMethod());
                 return true;
             default:
         }
@@ -114,27 +139,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * This is where the magic happens. Now the app will start the process of collecting
-     * data from the API and present it to the user.
+     * This is where the magic happens when app launches. The app will start the process of
+     * collecting data from the API and present it to the user.
      *
      * @param sortMethod tmdb API method for sorting movies
      */
-    private void getMovies(String sortMethod) {
-        FetchMovieAsyncTask movieTaskTask = new FetchMovieAsyncTask(this, mGridView);
-        movieTaskTask.execute(sortMethod);
-
-        // When poster is clicked it will launch a new intent showing movie information
-        mGridView.setOnItemClickListener(new GridView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Movie movie = (Movie) parent.getItemAtPosition(position);
-
-                Intent intent = new Intent(getApplicationContext(), MovieDetailsActivity.class);
-                intent.putExtra(getResources().getString(R.string.parcel_movie), movie);
-
-                startActivity(intent);
-            }
-        });
+    private void getMoviesFromTMDb(String sortMethod) {
+        FetchMovieAsyncTask movieTask = new FetchMovieAsyncTask(this, mGridView);
+        movieTask.execute(sortMethod);
     }
 
     /**
