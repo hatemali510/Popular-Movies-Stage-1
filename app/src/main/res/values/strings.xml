@@ -17,7 +17,8 @@
     <!-- Headline for user vote average -->
     <string name="heading_vote_average">Vote Average</string>
     <!-- Runtime text -->
-    <string name="unknown">Unknown</string>
+    <string name="no_release_date_found">No release date found</string>
+    <string name="no_summary_found">No summary was found</string>
 
     <!-- Some strings used for example layout during design -->
     <string name="example_original_title">The Green Poster Man</string>

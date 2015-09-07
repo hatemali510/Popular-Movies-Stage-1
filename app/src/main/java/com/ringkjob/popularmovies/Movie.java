@@ -43,12 +43,13 @@ public class Movie implements Parcelable {
     }
 
     /**
-     * Sets the overview of the movie
-     *
+     * Sets the overview of the movie. If the overview is 'null' it will default to null.
      * @param overview Overview (description) of the movie
      */
     public void setOverview(String overview) {
-        mOverview = overview;
+        if(!overview.equals("null")) {
+            mOverview = overview;
+        }
     }
 
     /**

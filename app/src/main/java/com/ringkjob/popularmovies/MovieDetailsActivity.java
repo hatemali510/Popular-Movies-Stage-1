@@ -1,6 +1,7 @@
 package com.ringkjob.popularmovies;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -45,7 +46,13 @@ public class MovieDetailsActivity extends AppCompatActivity {
                 .error(R.drawable.not_found)
                 .placeholder(R.drawable.searching)
                 .into(ivPoster);
-        tvOverView.setText(movie.getOverview());
+
+        String overView = movie.getOverview();
+        if (overView == null) {
+            tvOverView.setTypeface(null, Typeface.ITALIC);
+            overView = getResources().getString(R.string.no_summary_found);
+        }
+        tvOverView.setText(overView);
         tvVoteAverage.setText(movie.getDetailedVoteAverage());
 
         // First get the release date from the object - to be used if something goes wrong with
@@ -59,7 +66,8 @@ public class MovieDetailsActivity extends AppCompatActivity {
                 Log.e(LOG_TAG, "Error with parsing movie release date", e);
             }
         } else {
-            releaseDate = getResources().getString(R.string.unknown);
+            tvReleaseDate.setTypeface(null, Typeface.ITALIC);
+            releaseDate = getResources().getString(R.string.no_release_date_found);
         }
         tvReleaseDate.setText(releaseDate);
     }
