@@ -33,14 +33,14 @@ class FetchMovieAsyncTask extends AsyncTask<String, Void, Movie[]> {
     private final String mApiKey;
 
     /**
-     * TODO
+     * Interface / listener
      */
-    private OnTaskCompleted mListener;
+    private final OnTaskCompleted mListener;
 
     /**
      * Constructor
      *
-     * @param listener
+     * @param listener UI listener
      * @param apiKey TMDb API key
      */
     public FetchMovieAsyncTask(OnTaskCompleted listener, String apiKey) {

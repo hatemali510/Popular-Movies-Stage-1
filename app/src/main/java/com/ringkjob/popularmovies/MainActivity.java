@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Listener for clicks on movie posters in GridView
      */
-    private GridView.OnItemClickListener moviePosterClickListener = new GridView.OnItemClickListener() {
+    private final GridView.OnItemClickListener moviePosterClickListener = new GridView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             Movie movie = (Movie) parent.getItemAtPosition(position);
