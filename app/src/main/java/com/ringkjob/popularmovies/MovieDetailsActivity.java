@@ -42,7 +42,8 @@ public class MovieDetailsActivity extends AppCompatActivity {
                 .load(movie.getPosterPath())
                 .resize(getResources().getInteger(R.integer.tmdb_poster_w185_width),
                         getResources().getInteger(R.integer.tmdb_poster_w185_height))
-                .error(R.drawable.ic_action_error)
+                .error(R.drawable.not_found)
+                .placeholder(R.drawable.searching)
                 .into(ivPoster);
         tvOverView.setText(movie.getOverview());
         tvVoteAverage.setText(movie.getDetailedVoteAverage());

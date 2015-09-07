@@ -67,7 +67,8 @@ class ImageAdapter extends BaseAdapter {
                 .load(mMovies[position].getPosterPath())
                 .resize(mContext.getResources().getInteger(R.integer.tmdb_poster_w185_width),
                         mContext.getResources().getInteger(R.integer.tmdb_poster_w185_height))
-                .error(R.drawable.ic_action_error)
+                .error(R.drawable.not_found)
+                .placeholder(R.drawable.searching)
                 .into(imageView);
 
         return imageView;
