@@ -50,11 +50,15 @@ public class MovieDetailsActivity extends AppCompatActivity {
         // First get the release date from the object - to be used if something goes wrong with
         // getting localized release date (catch).
         String releaseDate = movie.getReleaseDate();
-        try {
-            releaseDate = DateTimeHelper.getLocalizedDate(this,
-                    releaseDate, movie.getDateFormat());
-        } catch (ParseException e) {
-            Log.e(LOG_TAG, "Error with parsing movie release date", e);
+        if(releaseDate != null) {
+            try {
+                releaseDate = DateTimeHelper.getLocalizedDate(this,
+                        releaseDate, movie.getDateFormat());
+            } catch (ParseException e) {
+                Log.e(LOG_TAG, "Error with parsing movie release date", e);
+            }
+        } else {
+            releaseDate = getResources().getString(R.string.unknown);
         }
         tvReleaseDate.setText(releaseDate);
     }

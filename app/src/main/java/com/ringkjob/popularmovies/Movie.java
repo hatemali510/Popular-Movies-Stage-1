@@ -61,12 +61,15 @@ public class Movie implements Parcelable {
     }
 
     /**
-     * Sets the release date of the movie
+     * Sets the release date of the movie.
      *
-     * @param releaseDate Release date of the movie
+     * @param releaseDate Release date of the movie. If value is "null" the release date will remain
+     *                    null
      */
     public void setReleaseDate(String releaseDate) {
-        mReleaseDate = releaseDate;
+        if(!releaseDate.equals("null")) {
+            mReleaseDate = releaseDate;
+        }
     }
 
     /**

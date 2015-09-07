@@ -16,6 +16,8 @@
     <string name="heading_release_date">Release Date</string>
     <!-- Headline for user vote average -->
     <string name="heading_vote_average">Vote Average</string>
+    <!-- Runtime text -->
+    <string name="unknown">Unknown</string>
 
     <!-- Some strings used for example layout during design -->
     <string name="example_original_title">The Green Poster Man</string>
