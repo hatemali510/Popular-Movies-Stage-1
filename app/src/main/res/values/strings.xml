@@ -39,4 +39,7 @@
     <!-- tmdb sort 'vote_average.desc' -->
     <string name="tmdb_sort_vote_avg_desc">vote_average.desc</string>
     <string name="description_movie_poster">Contains poster of movie</string>
+
+    <!-- Error user information -->
+    <string name="error_need_internet">This application needs Internet connection to function.</string>
 </resources>

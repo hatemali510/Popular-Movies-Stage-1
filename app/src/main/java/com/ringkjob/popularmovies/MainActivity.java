@@ -1,7 +1,10 @@
 package com.ringkjob.popularmovies;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.preference.PreferenceManager;
@@ -11,10 +14,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.Toast;
 
 /**
  * Created by Magnus Ringkjøb
- * <p>
+ * <p/>
  * Main activity of the application.
  */
 public class MainActivity extends AppCompatActivity {
@@ -52,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
             Parcelable[] parcelable = savedInstanceState.
                     getParcelableArray(getString(R.string.parcel_movie));
 
-            if(parcelable != null) {
+            if (parcelable != null) {
                 int numMovieObjects = parcelable.length;
                 Movie[] movies = new Movie[numMovieObjects];
                 for (int i = 0; i < numMovieObjects; i++) {
@@ -148,26 +152,47 @@ public class MainActivity extends AppCompatActivity {
 
 
     /**
-     * This is where the magic happens when app launches. The app will start the process of
-     * collecting data from the API and present it to the user.
+     * If device has Internet the magic happens when app launches. The app will start the process
+     * of collecting data from the API and present it to the user.
+     * <p/>
+     * If the device has no connectivity it will display a Toast explaining that app needs
+     * Internet to work properly.
      *
      * @param sortMethod tmdb API method for sorting movies
      */
     private void getMoviesFromTMDb(String sortMethod) {
-        // Key needed to get data from TMDb
-        String apiKey = getString(R.string.key_themoviedb);
+        if (isNetworkAvailable()) {
+            // Key needed to get data from TMDb
+            String apiKey = getString(R.string.key_themoviedb);
 
-        // Listener for when AsyncTask is ready to update UI
-        OnTaskCompleted taskCompleted = new OnTaskCompleted() {
-            @Override
-            public void onFetchMoviesTaskCompleted(Movie[] movies) {
-                mGridView.setAdapter(new ImageAdapter(getApplicationContext(), movies));
-            }
-        };
+            // Listener for when AsyncTask is ready to update UI
+            OnTaskCompleted taskCompleted = new OnTaskCompleted() {
+                @Override
+                public void onFetchMoviesTaskCompleted(Movie[] movies) {
+                    mGridView.setAdapter(new ImageAdapter(getApplicationContext(), movies));
+                }
+            };
 
-        // Execute task
-        FetchMovieAsyncTask movieTask = new FetchMovieAsyncTask(taskCompleted, apiKey);
-        movieTask.execute(sortMethod);
+            // Execute task
+            FetchMovieAsyncTask movieTask = new FetchMovieAsyncTask(taskCompleted, apiKey);
+            movieTask.execute(sortMethod);
+        } else {
+            Toast.makeText(this, getString(R.string.error_need_internet), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    /**
+     * Checks if there is Internet accessible.
+     * Based on a stackoverflow snippet
+     *
+     * @return True if there is Internet. False if not.
+     */
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
     /**

@@ -32,31 +32,6 @@ public class MovieTest extends TestCase {
         assertEquals(ACTUAL_ORIGINAL_TITLE, movieTest.getOriginalTitle());
         assertEquals(EXPECTED_POSTER_PATH, movieTest.getPosterPath());
         assertEquals(ACTUAL_OVERVIEW, movieTest.getOverview());
-        assertEquals(ACTUAL_VOTE_AVERAGE, movieTest.getVoteAverage());
-        assertEquals(EXPECTED_VOTE_AVERAGE_DETAILED, movieTest.getDetailedVoteAverage());
-        assertEquals(ACTUAL_RELEASE_DATE, movieTest.getReleaseDate());
-    }
-
-    @SmallTest
-    public void testMovie_OverloadedConstructor() {
-        final String ACTUAL_ORIGINAL_TITLE = "The Shawshank Redemption";
-        final String ACTUAL_POSTER_PATH = "/9O7gLzmreU0nGkIB6K3BsJbzvNv.jpg";
-        final String ACTUAL_OVERVIEW = "Framed in the 1940s for the double murder of his wife and her lover, upstanding banker Andy Dufresne begins a new life at the Shawshank prison, where he puts his accounting skills to work for an amoral warden. During his long stretch in prison, Dufresne comes to be admired by the other inmates -- including an older prisoner named Red -- for his integrity and unquenchable sense of hope.";
-        final Double ACTUAL_VOTE_AVERAGE = 8.2;
-        final String ACTUAL_RELEASE_DATE = "1994-09-14";
-
-        final String EXPECTED_POSTER_PATH = "https://image.tmdb.org/t/p/w185" + ACTUAL_POSTER_PATH;
-        final String EXPECTED_VOTE_AVERAGE_DETAILED = "8.2/10";
-
-        Movie movieTest = new Movie(ACTUAL_ORIGINAL_TITLE,
-                ACTUAL_POSTER_PATH, ACTUAL_OVERVIEW,
-                ACTUAL_VOTE_AVERAGE, ACTUAL_RELEASE_DATE);
-
-
-        assertEquals(ACTUAL_ORIGINAL_TITLE, movieTest.getOriginalTitle());
-        assertEquals(EXPECTED_POSTER_PATH, movieTest.getPosterPath());
-        assertEquals(ACTUAL_OVERVIEW, movieTest.getOverview());
-        assertEquals(ACTUAL_VOTE_AVERAGE, movieTest.getVoteAverage());
         assertEquals(EXPECTED_VOTE_AVERAGE_DETAILED, movieTest.getDetailedVoteAverage());
         assertEquals(ACTUAL_RELEASE_DATE, movieTest.getReleaseDate());
     }
