@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
 
         // Same settings as the one above
-        mMenu.add(0, R.string.pref_sort_vote_avg_desc_key, Menu.NONE, null)
+        mMenu.add(Menu.NONE, R.string.pref_sort_vote_avg_desc_key, Menu.NONE, null)
                 .setVisible(false)
                 .setIcon(R.drawable.ic_action_poll)
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
