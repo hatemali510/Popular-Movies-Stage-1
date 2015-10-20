@@ -1,7 +1,8 @@
 # Popular-Movies-Stage-1
 Udacity Android Nanodegree project #1
 
-[![Udacity Android Nanodegree project #1](https://i.imgur.com/mI9SYE6.png)](https://youtu.be/TEXmYKjS0ogt=20s "Udacity Android Nanodegree project #1")
+Youtube link:
+[![Click to watch app on YouTube](https://i.imgur.com/mI9SYE6.png)](https://youtu.be/TEXmYKjS0ogt=20s "Click to watch app on YouTube")
 
 Instructions for user:
   You have to supply your own API key for themoviedb.org before this app will compile. To do so, follow these insttructions:
